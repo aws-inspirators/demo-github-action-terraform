@@ -183,7 +183,6 @@ resource "aws_security_group_rule" "allow_alb_all_outbound" {
 resource "aws_lb" "load_balancer" {
   name               = "web-app-lb"
   load_balancer_type = "application"
-  subnets            = data.aws_subnet_ids.default_subnet.ids
   security_groups    = [aws_security_group.alb.id]
 
 }
@@ -210,7 +209,7 @@ resource "aws_db_instance" "db_instance" {
   engine               = "postgres"
   engine_version       = "14"
   instance_class       = "db.t4g.large"
-  name                 = "dibo-db"
+  identifier           = "dibo-db"
   username             = "foo"
   password             = "foobarbaz"
   skip_final_snapshot  = true
